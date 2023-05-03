@@ -1,4 +1,6 @@
 # Sensitive information
+dataset/
+quarterlyData/
 constants.py
 
 # Byte-compiled / optimized / DLL files
