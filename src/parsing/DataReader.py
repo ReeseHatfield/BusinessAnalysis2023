@@ -5,6 +5,7 @@ class DataReader:
         self.file_path = file_path
         self.fields = []
         self.rows = []
+        self.numRows = 0
 
         with open(file_path, 'r') as data:
             csv_reader = csv.reader(data)
@@ -14,6 +15,7 @@ class DataReader:
             # extracting each data row one by one
             for row in csv_reader:
                 self.rows.append(row)
+                self.numRows += 1
 
     def getAllData(self):
         return self.rows
@@ -26,6 +28,10 @@ class DataReader:
 
     def getRow(self, row_num):
         return self.rows[row_num]
+    
+    # O(1) getter for number of rows
+    def getNumRows(self):
+        return self.numRows
 
 
 

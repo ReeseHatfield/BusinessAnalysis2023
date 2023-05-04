@@ -3,18 +3,50 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'src', 'parsing')))
 from DataReader import DataReader
 from dateutil.parser import parse
+from datetime import datetime
+from matplotlib import pyplot as plt
+import numpy as np
+from collections import OrderedDict
 
 
 def main():
-    exDate = "04-May-2023 09:28 AM EDT"
-    parsedDate = parse(exDate)
+    reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
 
-    rowsNum = 80000#ish fix this, do not have access to proper data set
+    sales_per_day = OrderedDict()
+
+    num_sales_in_day = 0
+
+    for i in range(2, reader.getNumRows()):
+        
+        previousDate = parse(reader.getRow(i-1)[0])
+        currentDate = parse(reader.getRow(i)[0])
+      
 
 
-    print(parsedDate.day)
-    print(parsedDate.month)
-    print(parsedDate.year)
+        if currentDate.date() == previousDate.date():
+            num_sales_in_day += 1
+        else:
+
+            if(currentDate.month == 6 or currentDate.month == 7 or currentDate.month == 8):
+                num_sales_in_day += 000
+    
+            sales_per_day[currentDate] = num_sales_in_day
+            
+            num_sales_in_day = 0    
+    
+    print(len(sales_per_day))
+
+    days = np.arange(len(sales_per_day))
+    plt.bar(days, list(sales_per_day.values()))
+
+    
+    
+    
+    plt.xlabel("Time")
+    plt.ylabel("Sales")
+
+    plt.show()
+    
     
 
 
