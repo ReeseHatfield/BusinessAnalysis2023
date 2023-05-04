@@ -1,10 +1,11 @@
 from constants import apiKey, merchantID
 import datetime as dt
-from DataReader import DataReader
+from parsing.DataReader import DataReader
+import os
 
 
 def main():
-    reader = DataReader('dataset\dataSet.csv')
+    reader = DataReader(os.path.join('dataset','dataSet.csv'))
     print(reader.getField(0))
     
 
