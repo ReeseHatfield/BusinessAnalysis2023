@@ -88,7 +88,7 @@ In addition, we will provide detailed written reports summarizing the results of
 Note: This timeline assumes that all necessary data is readily available and that the project team has the required resources and expertise to complete each task. Delays or unexpected challenges may impact the timeline.
 
 ## Timeline
-![Timeline](proposal/Timeline.PNG)
+![Timeline](Timeline.PNG)
 
 # Conclusion
 
