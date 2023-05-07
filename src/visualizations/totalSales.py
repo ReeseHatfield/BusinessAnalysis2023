@@ -68,27 +68,28 @@ def plotData(data: OrderedDict, is_by_weeks: bool) -> None:
     plt.show()
     
 def computeSummerDeficit(sales: list) -> None:
-    summer_21_start = summer_21_dates[0]
-    summer_21_end = summer_21_dates[1]
 
-    summer_22_start = summer_22_dates[0]
-    summer_22_end = summer_22_dates[1]
+    daily_average_sales = averageSales(sales)
+    print("Average daily sales: ", round(daily_average_sales, 2))
 
-    summer_21_avg = computeSeasonalAvg(sales, summer_21_start, summer_21_end)
-    summer_22_avg = computeSeasonalAvg(sales, summer_22_start, summer_22_end)
-
-    summer_avg = (summer_21_avg + summer_22_avg) / 2
+    summer_avg = averageSales([
+        computeSeasonalAvg(sales, summer_21_dates[0],summer_21_dates[1]),
+        computeSeasonalAvg(sales, summer_22_dates[0], summer_22_dates[1])
+    ])
     print("Summer Average: ", round(summer_avg, 2))
 
-    busy_season_1 = computeSeasonalAvg(sales, 0, summer_21_start - 1)
-    busy_season_2 = computeSeasonalAvg(sales, summer_21_end + 1, summer_22_start - 1)
-    busy_season_3 = computeSeasonalAvg(sales, summer_22_end + 1, len(sales))
+    busy_season_avg = averageSales([
+        computeSeasonalAvg(sales, 0, summer_21_dates[0] - 1),
+        computeSeasonalAvg(sales, summer_21_dates[1] + 1, summer_22_dates[0] - 1),
+        computeSeasonalAvg(sales, summer_22_dates[1] + 1, len(sales))
+    ])
+    print("Busy season average: ", round(busy_season_avg, 2))
 
-    busy_season_avg = (busy_season_1 + busy_season_2 + busy_season_3) / 3
-    print("Busy season average: ", busy_season_avg)
+    summer_sales_deficit = summer_avg / busy_season_avg
+    print(f"Summer sales deficit: -{round(100 * (1 - summer_sales_deficit), 2)}%")
 
-    daily_average_sales = sum(sales) / len(sales)
-    print("Average daily sales: ", round(daily_average_sales, 2))
+    
+
 
 
 def computeSeasonalAvg(sales: list, start: int, end: int) -> float:
