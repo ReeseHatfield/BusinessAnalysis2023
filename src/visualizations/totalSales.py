@@ -12,7 +12,6 @@ from collections import OrderedDict
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from constants import summer_21_dates, summer_22_dates
 
-
 warnings.filterwarnings("ignore", category = UnknownTimezoneWarning)
 
 def main():

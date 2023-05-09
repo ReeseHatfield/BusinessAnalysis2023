@@ -1,4 +1,9 @@
 import csv
+import warnings
+from dateutil import tz
+from dateutil.parser import parse, UnknownTimezoneWarning
+warnings.filterwarnings("ignore", category = UnknownTimezoneWarning)
+
 class DataReader:
     
     def __init__ (self, file_path):
@@ -32,6 +37,27 @@ class DataReader:
     # O(1) getter for number of rows
     def getNumRows(self):
         return self.numRows
+    
+    def getSalesPerDay(self) -> list:
+
+        print("Reading sales per day...")
+        sales_per_day = []
+        num_sales_in_day = 0
+        timezone_info = {'EDT': tz.gettz('America/New_York')}
+
+        for i in range(2, self.getNumRows()):
+
+            previousDate = parse(self.getRow(i-1)[0], tzinfos = timezone_info )
+            currentDate = parse(self.getRow(i)[0], tzinfos = timezone_info)
+
+            if currentDate.date() == previousDate.date():
+                num_sales_in_day += 1
+            else:
+                sales_per_day.append(num_sales_in_day)
+                num_sales_in_day = 0   
+
+        print("Finished reading sales per day")
+        return sales_per_day
 
 
 
