@@ -24,12 +24,15 @@ def main():
     regression = SinusoidalRegression(domain, function)
     result = regression.fit_sin()
 
-    print("Regression Coeffiecients: ", result)
+    plot_data(domain, function, result)
 
-    plt.plot(domain, function, "-k", label="y", linewidth=2)
+    
+def plot_data(domain, function, result):
+    plt.plot(domain, function, "-k", label="y", linewidth = 2)
     plt.plot(domain, result["fitfunc"](domain), "r-", label="y fit curve", linewidth=2)
     plt.legend(loc="best")
     plt.show()
+
 
 if __name__ == "__main__":
     main()
