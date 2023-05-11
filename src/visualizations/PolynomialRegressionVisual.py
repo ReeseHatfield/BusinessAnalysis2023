@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from PolynomialRegression import PolynomialRegression
 
 def main():
-    print(os.getcwd)
+
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
 
     sales = reader.getSalesPerDay()
@@ -20,7 +20,7 @@ def main():
 
     domain = range(len(sales))
     function = sales
-    degree: int = 40
+    degree: int = 110
 
     model = np.poly1d(np.polyfit(domain,function, degree))
     line = np.linspace(1, len(sales), len(sales))
