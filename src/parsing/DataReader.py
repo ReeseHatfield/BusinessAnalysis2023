@@ -3,6 +3,7 @@ import warnings
 from dateutil import tz
 from dateutil.parser import parse, UnknownTimezoneWarning
 warnings.filterwarnings("ignore", category = UnknownTimezoneWarning)
+from collections import OrderedDict, defaultdict
 
 class DataReader:
     
@@ -42,12 +43,18 @@ class DataReader:
         dates = self.getDates()
         sales = self.getSalesPerDay()
 
-        dateSaleDict = {}
+        dateSaleDict = OrderedDict()
         for i in range(len(dates)):
             
             dateSaleDict[dates[i]] = sales[i]
 
         #TODO: make this average all sales made on same day of year, and return list of sales
+
+        averagedDates = self.__compressDates(dateSaleDict)
+        return averagedDates
+
+    def __compressDates(self, date_sales_dict: OrderedDict) -> list:
+        pass
 
     def getDates(self):
         dates = self.getField(0)
@@ -62,6 +69,7 @@ class DataReader:
                  datelist.append(parse(dates[i]))
         
         return datelist
+    
         
     
     def getSalesPerDay(self) -> list:
