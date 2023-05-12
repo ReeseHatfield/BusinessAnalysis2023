@@ -38,6 +38,32 @@ class DataReader:
     def getNumRows(self):
         return self.numRows
     
+    def getAvgSalesPerDayInYear(self):
+        dates = self.getDates()
+        sales = self.getSalesPerDay()
+
+        dateSaleDict = {}
+        for i in range(len(dates)):
+            
+            dateSaleDict[dates[i]] = sales[i]
+
+        #TODO: make this average all sales made on same day of year, and return list of sales
+
+    def getDates(self):
+        dates = self.getField(0)
+        timezone_info = {'EDT': tz.gettz('America/New_York')}
+        datelist = []
+        for i in range(2, len(dates)):
+
+            previousDate = parse(self.getRow(i-1)[0], tzinfos = timezone_info )
+            currentDate = parse(self.getRow(i)[0], tzinfos = timezone_info)
+
+            if(previousDate.date() != currentDate.date()):
+                 datelist.append(parse(dates[i]))
+        
+        return datelist
+        
+    
     def getSalesPerDay(self) -> list:
 
         print("Reading sales per day...")
