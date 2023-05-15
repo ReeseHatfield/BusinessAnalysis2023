@@ -1,6 +1,8 @@
 import csv
 import warnings
 from dateutil import tz
+import datetime as dt
+import datetime
 from dateutil.parser import parse, UnknownTimezoneWarning
 warnings.filterwarnings("ignore", category = UnknownTimezoneWarning)
 from collections import OrderedDict, defaultdict
@@ -43,18 +45,34 @@ class DataReader:
         dates = self.getDates()
         sales = self.getSalesPerDay()
 
-        dateSaleDict = OrderedDict()
-        for i in range(len(dates)):
+        returnList = []
+
+        currentDate = dt.datetime(year=2023, month=1,day=1)
+        for i in range(0, 365):
+            dateSum = 0
+            divisor = 0
+            for j in range(len(dates)):
+                if(dates[j].day == currentDate.day and dates[j].month == currentDate.month):
+                    
+                    if(sales[j] != 0):
+                        dateSum += sales[j]
+                        divisor += 1
+
+            if divisor == 0:
+                returnList.append(0)
+            else:
+                returnList.append(dateSum / divisor)
             
-            dateSaleDict[dates[i]] = sales[i]
+            currentDate += datetime.timedelta(days=1)
 
-        #TODO: make this average all sales made on same day of year, and return list of sales
 
-        averagedDates = self.__compressDates(dateSaleDict)
-        return averagedDates
+        currentDate = dt.datetime(year=2023, month=1,day=1)
+        for i in range(365):
+            print(currentDate, ": ", returnList[i])
+            currentDate += datetime.timedelta(days=1)
 
-    def __compressDates(self, date_sales_dict: OrderedDict) -> list:
-        pass
+        print((returnList))
+        return returnList
 
     def getDates(self):
         dates = self.getField(0)
@@ -67,7 +85,7 @@ class DataReader:
 
             if(previousDate.date() != currentDate.date()):
                  datelist.append(parse(dates[i]))
-        
+
         return datelist
     
         
@@ -89,6 +107,7 @@ class DataReader:
             else:
                 sales_per_day.append(num_sales_in_day)
                 num_sales_in_day = 0   
+
 
         print("Finished reading sales per day")
         return sales_per_day
