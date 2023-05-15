@@ -88,7 +88,9 @@ In addition, we will provide detailed written reports summarizing the results of
 Note: This timeline assumes that all necessary data is readily available and that the project team has the required resources and expertise to complete each task. Delays or unexpected challenges may impact the timeline.
 
 ## Timeline
-![Timeline](/proposal/Timeline.PNG)
+
+Figure #1
+![Timeline](/proposal/images/Timeline.PNG)
 
 # Conclusion
 
@@ -97,6 +99,13 @@ Note: This timeline assumes that all necessary data is readily available and tha
 # Facilites and Equipment
 
 # Budget
+
+# Software
+
+In addition to all the previous stated analysis, software will be developed for end users to access this data in a user-friendly way. A prototype of the design can be shown below in Figure #2
+<br/>
+Figure #2
+![Design](/proposal/images/GuiDesign.png)
 
 # Team Resumes
 ## Ean Hatfield
