@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
+import pickle
 import os
 import numpy as np
 from numpy.polynomial import Polynomial as P
@@ -15,12 +16,19 @@ def main():
 
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
 
-    sales = reader.getAvgSalesPerDayInYear()
+    sales: list = reader.getAvgSalesPerDayInYear()
     function = sales
-    degree = 40
+    degree: int = 40
     domain = range(len(sales))
     
     model = np.poly1d(np.polyfit(domain,function, degree))
+
+    with open('dataset/sales_data.pkl', 'wb') as f:
+        pickle.dump(sales, f)
+    with open('dataset/model.pkl', 'wb') as f:
+        pickle.dump(model, f)
+
+
 
     plotData(domain, function, model)
     
