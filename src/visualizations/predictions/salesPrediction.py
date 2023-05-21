@@ -20,8 +20,8 @@ def main():
     plotData(range(len(sales)), sales, model)
 
 def load_or_compute_data():
-    data_file = "dataset\sales_data.pkl"
-    model_file = "dataset\model.pkl"
+    data_file = os.path.join("dataset", "sales_data.pkl")
+    model_file = os.path.join("dataset", "model.pkl")
 
     if os.path.exists(data_file) and os.path.exists(model_file):
         print("Using pre-computed data")

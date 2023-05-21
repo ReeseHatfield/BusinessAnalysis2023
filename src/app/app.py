@@ -32,14 +32,14 @@ def main():
     
 
     historical_sales_avg, projected_avg_sales = readData("dataset\sales_data.pkl", "dataset\model.pkl")
-    # date_to_get = int(input("Date: "))
+    date_to_get = int(input("Date: "))
 
-    # print("Historical: ", round(historical_sales_avg[date_to_get], 2))
+    print("Historical: ", round(historical_sales_avg[date_to_get], 2))
 
-    # print("Predicted: ", round(projected_avg_sales(date_to_get), 2))
+    print("Predicted: ", round(projected_avg_sales(date_to_get), 2))
 
-    # domain = range(len(historical_sales_avg))    
-    # plotData(domain, historical_sales_avg, predicted_avg_sales)
+    domain = range(len(historical_sales_avg))    
+    plotData(domain, historical_sales_avg, projected_avg_sales)
 
 
 
