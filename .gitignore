@@ -2,6 +2,7 @@
 dataset/
 quarterlyData/
 constants.py
+response.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
