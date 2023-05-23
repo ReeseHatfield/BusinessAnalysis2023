@@ -32,10 +32,10 @@ def get_sales_per_day(reader: DataReader) -> OrderedDict:
     num_sales_in_day = 0
     timezone_info = {'EDT': tz.gettz('America/New_York')}
 
-    for i in range(2, reader.getNumRows()):
+    for i in range(2, reader.get_num_rows()):
 
-        previous_date = parse(reader.getRow(i - 1)[0], tzinfos=timezone_info)
-        current_date = parse(reader.getRow(i)[0], tzinfos=timezone_info)
+        previous_date = parse(reader.get_row(i - 1)[0], tzinfos=timezone_info)
+        current_date = parse(reader.get_row(i)[0], tzinfos=timezone_info)
 
         if current_date.date() == previous_date.date():
             num_sales_in_day += 1

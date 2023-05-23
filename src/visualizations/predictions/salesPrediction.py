@@ -32,7 +32,7 @@ def load_or_compute_data():
         print("Computing data")
         # Compute data
         reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
-        sales = reader.getAvgSalesPerDayInYear()
+        sales = reader.get_avg_sales_per_day_in_year()
         degree: int = 40
         domain = range(len(sales))
         model = np.poly1d(np.polyfit(domain, sales, degree))

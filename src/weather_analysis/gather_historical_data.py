@@ -24,7 +24,7 @@ def main():
     else:
         print("Computing data")
         reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
-        dates = reader.getDates()
+        dates = reader.get_dates()
         with open(pickle_file_path, 'wb') as f:
             pickle.dump(dates, f)
 
