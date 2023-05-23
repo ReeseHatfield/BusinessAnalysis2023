@@ -1,34 +1,26 @@
-import numpy, scipy.optimize
+from src.parsing.DataReader import DataReader
+from src.regression.SinusoidalRegression import SinusoidalRegression
+
 import pylab as plt
-import sys
 import os
-from dateutil import tz
-from dateutil.parser import parse, UnknownTimezoneWarning
-import warnings
-warnings.filterwarnings("ignore", category = UnknownTimezoneWarning)
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'src', 'parsing')))
-from DataReader import DataReader
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'src', 'regression')))
-from SinusoidalRegression import SinusoidalRegression
 
 def main():
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
-    sales = reader.getSalesPerDay()
+    sales = reader.get_sales_per_day()
 
-    #tt = numpy.linspace(0, n, n)
+    # tt = numpy.linspace(0, n, n)
     domain = range(len(sales))
     function = sales
-    #result = fit_sin(domain, function)
+    # result = fit_sin(domain, function)
     regression = SinusoidalRegression(domain, function)
     result = regression.fit_sin()
 
     plot_data(domain, function, result)
 
-    
+
 def plot_data(domain, function, result):
-    plt.plot(domain, function, "-k", label="y", linewidth = 2)
+    plt.plot(domain, function, "-k", label="y", linewidth=2)
     plt.plot(domain, result["fitfunc"](domain), "r-", label="y fit curve", linewidth=2)
     plt.legend(loc="best")
     plt.show()

@@ -3,14 +3,11 @@ import sys
 import pickle
 import os
 import numpy as np
-from numpy.polynomial import Polynomial as P
-from dateutil.parser import parse
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__),'..' ,'..', '..', 'src', 'parsing')))
-from DataReader import DataReader
+from src.parsing.DataReader import DataReader
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__),'..', '..', '..', 'src', 'regression')))
-from PolynomialRegression import PolynomialRegression
+from src.regression.PolynomialRegression import PolynomialRegression
+
 
 def main():
     # Load data from file if it exists, otherwise compute it
@@ -18,6 +15,7 @@ def main():
 
     # Plot the data
     plotData(range(len(sales)), sales, model)
+
 
 def load_or_compute_data():
     data_file = os.path.join("dataset", "sales_data.pkl")
@@ -48,8 +46,6 @@ def load_or_compute_data():
     return sales, model
 
 
-    
-    
 def plotData(domain, function, model):
     line = np.linspace(1, len(domain), len(domain))
     plt.plot(domain, function)

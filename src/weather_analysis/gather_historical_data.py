@@ -4,16 +4,16 @@ import requests
 import datetime
 import pickle
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from constants import open_weather_key
+from src.parsing.DataReader import DataReader
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__),'..' ,'..', 'src', 'parsing')))
-from DataReader import DataReader
+BASE_URL = "https://archive-api.open-meteo.com/v1/archive"
+LATITUDE = 39.344538
+LONGITUDE = -82.988237
+
 
 def main():
-    BASE_URL = "https://archive-api.open-meteo.com/v1/archive"
-    LATITUDE = 39.344538  
-    LONGITUDE = -82.988237  
+
+    print(os.getcwd())
 
     pickle_file_path = os.path.join('dataset', 'dates.pkl')
 
@@ -49,17 +49,18 @@ def main():
         # Send GET request to Open-Meteo API
         response = requests.get(BASE_URL, params=request_params).json()
 
-        mean_temperature = response['daily']['temperature_2m_mean'][0] 
-        preciptation_sum = response['daily']['precipitation_sum'][0]
+        mean_temperature = response['daily']['temperature_2m_mean'][0]
+        precipitation_sum = response['daily']['precipitation_sum'][0]
 
         print(f"Day: {current_date}")
         print(mean_temperature)
-        print(preciptation_sum)
-        weather_dict_by_day[current_date] = (mean_temperature, preciptation_sum)
+        print(precipitation_sum)
+        weather_dict_by_day[current_date] = (mean_temperature, precipitation_sum)
 
     weather_pickle_path = os.path.join('dataset', 'weather_data_by_day.pkl')
     with open(weather_pickle_path, 'wb') as f:
         pickle.dump(weather_dict_by_day, f)
-    
+
+
 if __name__ == "__main__":
     main()

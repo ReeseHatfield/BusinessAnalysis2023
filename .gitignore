@@ -3,6 +3,8 @@ dataset/
 quarterlyData/
 constants.py
 response.json
+# Pycharm
+.idea\
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
