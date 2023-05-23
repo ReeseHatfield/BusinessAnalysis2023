@@ -57,8 +57,6 @@ def main():
         print(preciptation_sum)
         weather_dict_by_day[current_date] = (mean_temperature, preciptation_sum)
 
-    # date_to_retrieve = datetime.date(2020, 9, 1)  
-    # weather_data = weather_dict_by_day[date_to_retrieve]    
     weather_pickle_path = os.path.join('dataset', 'weather_data_by_day.pkl')
     with open(weather_pickle_path, 'wb') as f:
         pickle.dump(weather_dict_by_day, f)

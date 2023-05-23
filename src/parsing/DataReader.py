@@ -25,6 +25,18 @@ class DataReader:
                 self.rows.append(row)
                 self.numRows += 1
 
+    def get_avg_sales_per_day_in_month(self, month: int) -> float:
+        sum = 0
+        divisor = 1
+        timezone_info = {'EDT': tz.gettz('America/New_York')}
+
+
+
+
+        
+
+
+
     def getAllData(self):
         return self.rows
     
