@@ -105,6 +105,23 @@ class DataReader:
 
         return date_list
 
+    def get_sales_by_day(self) -> dict:
+        sales_by_day = {}
+
+        # Fetch all sales per day and associated dates
+        dates = self.get_dates()
+        sales = self.get_sales_per_day()
+
+        # Iterate over each day
+        for i in range(len(dates)):
+            # If the date is already in the dictionary, add the sales to it
+            if dates[i] in sales_by_day:
+                sales_by_day[dates[i]] += sales[i]
+            else:  # Otherwise, create a new entry in the dictionary for this date
+                sales_by_day[dates[i]] = sales[i]
+
+        return sales_by_day
+
     def get_sales_per_day(self) -> list:
 
         print("Reading sales per day...")
