@@ -28,6 +28,16 @@ def main():
         print(f"Average Temperature for month {current_month}: {avg_temp:.2f}")
         print(f"Average Sales for month {current_month}: {avg_sales_on_normal_day:.2f}")
 
+        days_precipitated_in_current_month = [date for date in weather_data.keys()
+                                              if date.month == i
+                                              and weather_data[date][1] > 0.5]
+
+        average_sales_on_precip_days = calculate_sales_on_precip_days(days_precipitated_in_current_month)
+
+
+def calculate_sales_on_precip_days(days_precipitated: list) -> float:
+    raise NotImplementedError
+
 
 def get_sales_by_month(reader: DataReader) -> list:
     sales_per_month = []
