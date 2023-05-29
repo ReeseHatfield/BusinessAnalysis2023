@@ -101,7 +101,7 @@ class DataReader:
             current_date = parse(self.get_row(i)[0], tzinfos=timezone_info)
 
             if previous_date.date() != current_date.date():
-                date_list.append(parse(dates[i]))
+                date_list.append(parse(dates[i]).date())
 
         return date_list
 

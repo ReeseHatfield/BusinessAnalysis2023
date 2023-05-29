@@ -57,7 +57,7 @@ def main():
         print(precipitation_sum)
         weather_dict_by_day[current_date] = (mean_temperature, precipitation_sum)
 
-    weather_pickle_path = os.path.join('dataset', 'weather_data_by_day.pkl')
+    weather_pickle_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
     with open(weather_pickle_path, 'wb') as f:
         pickle.dump(weather_dict_by_day, f)
 

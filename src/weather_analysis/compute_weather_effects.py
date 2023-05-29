@@ -3,12 +3,13 @@ import os
 import pickle
 import datetime
 
+PRECIPITATION_THRESHOLD = 0.0
+
 
 def main():
     # Load weather data
-    weather_pickle_path = os.path.join('dataset', 'weather_data_by_day.pkl')
+    weather_pickle_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
     weather_data = load_weather_data_from_pickle(weather_pickle_path)
-
 
     # dict of {datetime.date() : (temp, precip) }
     # only includes date where business was open
@@ -16,6 +17,7 @@ def main():
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
 
     sales_per_month = get_sales_by_month(reader)
+    sales_by_date = reader.get_sales_by_day()
     print(sales_per_month)
 
     # Process each month
@@ -25,18 +27,35 @@ def main():
         avg_temp = calculate_avg_temp_for_month(current_month, weather_data)
         avg_sales_on_normal_day = sales_per_month[current_month - 1]
 
-        print(f"Average Temperature for month {current_month}: {avg_temp:.2f}")
-        print(f"Average Sales for month {current_month}: {avg_sales_on_normal_day:.2f}")
+        # print(f"Average Temperature for month {current_month}: {avg_temp:.2f}")
+        # print(f"Average Sales for month {current_month}: {avg_sales_on_normal_day:.2f}")
 
         days_precipitated_in_current_month = [date for date in weather_data.keys()
-                                              if date.month == i
-                                              and weather_data[date][1] > 0.5]
+                                              if date.month == current_month
+                                              and weather_data[date][1] > PRECIPITATION_THRESHOLD]
+        print(days_precipitated_in_current_month)
 
-        average_sales_on_precip_days = calculate_sales_on_precip_days(days_precipitated_in_current_month)
+        average_sales_on_precip_days = calculate_sales_on_precip_days(days_precipitated_in_current_month, sales_by_date)
+        if average_sales_on_precip_days is None:
+            print(f"No precipitated days for month {current_month}.")
+            continue
+
+        print(f"Average sales on normal day: {avg_sales_on_normal_day}")
+        print(f"Average sales on precip day: {average_sales_on_precip_days}")
+
+        precip_effect = average_sales_on_precip_days / avg_sales_on_normal_day
+        print(f"Precip Affect for {current_month}: {precip_effect:.2f}%")
 
 
-def calculate_sales_on_precip_days(days_precipitated: list) -> float:
-    raise NotImplementedError
+def calculate_sales_on_precip_days(days_precipitated: list, sales_by_date: dict) -> float:
+    if not days_precipitated:
+        return None
+
+    total = 0
+    for date in days_precipitated:
+        if date in sales_by_date:
+            total += sales_by_date[date]
+    return total / len(days_precipitated)
 
 
 def get_sales_by_month(reader: DataReader) -> list:
