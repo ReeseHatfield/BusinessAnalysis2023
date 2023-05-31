@@ -44,6 +44,9 @@ def main():
         print(f"Average sales on precip day: {average_sales_on_precip_days}")
 
         precip_effect = average_sales_on_precip_days / avg_sales_on_normal_day
+
+        precip_effect -= 1
+        precip_effect *= 100
         print(f"Precip Affect for {current_month}: {precip_effect:.2f}%")
 
 
