@@ -3,13 +3,14 @@ import os
 import pickle
 import datetime
 
-PRECIPITATION_THRESHOLD = 0.0
+PRECIPITATION_THRESHOLD = 1.25  # inches of precipitation
 
 
 def main():
     # Load weather data
     weather_pickle_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
     weather_data = load_weather_data_from_pickle(weather_pickle_path)
+    precipitation_effects = []
 
     # dict of {datetime.date() : (temp, precip) }
     # only includes date where business was open
@@ -27,12 +28,10 @@ def main():
         avg_temp = calculate_avg_temp_for_month(current_month, weather_data)
         avg_sales_on_normal_day = sales_per_month[current_month - 1]
 
-        # print(f"Average Temperature for month {current_month}: {avg_temp:.2f}")
-        # print(f"Average Sales for month {current_month}: {avg_sales_on_normal_day:.2f}")
-
         days_precipitated_in_current_month = [date for date in weather_data.keys()
                                               if date.month == current_month
                                               and weather_data[date][1] > PRECIPITATION_THRESHOLD]
+
         print(days_precipitated_in_current_month)
 
         average_sales_on_precip_days = calculate_sales_on_precip_days(days_precipitated_in_current_month, sales_by_date)
@@ -48,6 +47,22 @@ def main():
         precip_effect -= 1
         precip_effect *= 100
         print(f"Precip Affect for {current_month}: {precip_effect:.2f}%")
+        precipitation_effects.append(precip_effect)
+
+    print(precipitation_effects)
+
+    avg_precip_effect = calculate_avg_precip_effect(precipitation_effects)
+
+    print(f"Avg precip effect: {avg_precip_effect}")
+
+
+def calculate_avg_precip_effect(effects: list):
+    total = 0
+    divisor = len(effects)
+    for current_effect in effects:
+        total += abs(current_effect)
+
+    return total / divisor
 
 
 def calculate_sales_on_precip_days(days_precipitated: list, sales_by_date: dict) -> float:
