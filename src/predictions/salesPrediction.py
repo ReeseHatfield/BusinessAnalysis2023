@@ -6,9 +6,6 @@ import numpy as np
 
 from src.parsing.DataReader import DataReader
 
-from src.regression.PolynomialRegression import PolynomialRegression
-
-
 def main():
     # Load data from file if it exists, otherwise compute it
     sales, model = load_or_compute_data()
@@ -18,8 +15,8 @@ def main():
 
 
 def load_or_compute_data():
-    data_file = os.path.join("dataset", "sales_data.pkl")
-    model_file = os.path.join("dataset", "model.pkl")
+    data_file = os.path.join("dataset", 'serialized', "sales_data.pkl")
+    model_file = os.path.join("dataset", 'serialized', "model.pkl")
 
     if os.path.exists(data_file) and os.path.exists(model_file):
         print("Using pre-computed data")
