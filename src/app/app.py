@@ -1,49 +1,50 @@
 import pickle
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tk
 from tkinter import ttk
+from datetime import datetime
+from src.constants import weather_effect
+from src.app.windows.MainWindow import MainWindow
+
 
 def main():
-
     root = tk.Tk()
 
-    root.geometry("900x500")
-    root.title("Sales")
+    customized_style = ttk.Style()
+    customized_style.configure('Custom.TNotebook.Tab', padding=[12, 12], font=('Helvetica', 10))
+    customized_style.configure('Custom.TNotebook', tabposition='wn')
 
-    style = ttk.Style(root)
-    style.configure('lefttab.TNotebook', tabposition='ws')
-    tabControl = ttk.Notebook(root, style='lefttab.TNotebook')
-
-    
-
-
-    tab1 = ttk.Frame(tabControl)
-    tab2 = ttk.Frame(tabControl)
-
-    tabControl.add(tab1, text='Tab 1')
-    tabControl.add(tab2, text='Tab 2')
-
-    tabControl.pack(expand=1, fill="both")
-
-
+    app = MainWindow(root)
     root.mainloop()
-    
-    
-
-    historical_sales_avg, projected_avg_sales = readData("dataset\sales_data.pkl", "dataset\model.pkl")
-    date_to_get = int(input("Date: "))
-
-    print("Historical: ", round(historical_sales_avg[date_to_get], 2))
-
-    print("Predicted: ", round(projected_avg_sales(date_to_get), 2))
-
-    domain = range(len(historical_sales_avg))    
-    plotData(domain, historical_sales_avg, projected_avg_sales)
 
 
 
-def readData(data_file, model_file):
+    sales_data_path = os.path.join('dataset', 'serialized', 'sales_data.pkl')
+    cont_model = os.path.join('dataset', 'serialized', 'model.pkl')
+    historical_sales_avg, projected_avg_sales = read_data(sales_data_path, cont_model)
+
+    date_to_get = date_to_day((input("Date: ")))
+
+    print(f"Historical:  {historical_sales_avg[date_to_get]:.2f}")
+    print(f"Predicted:  {projected_avg_sales(date_to_get):.2f}")
+    print()
+    print(f"Historical with Weather:  {(historical_sales_avg[date_to_get] * weather_effect):.2f}")
+    print(f"Predicted with Weather:  {(projected_avg_sales(date_to_get) * weather_effect ):.2f}")
+
+    domain = range(len(historical_sales_avg))
+    plot_data(domain, historical_sales_avg, projected_avg_sales)
+
+
+def date_to_day(date_input: str):
+    year = 2022
+    date = datetime.strptime(date_input, f'%m-%d-%Y').date()
+    day_of_year = date.timetuple().tm_yday
+    return day_of_year
+
+
+def read_data(data_file, model_file):
     sales = []
     model = []
 
@@ -53,17 +54,13 @@ def readData(data_file, model_file):
         model = pickle.load(f)
 
     return sales, model
-    
-    
-    
-    
-def plotData(domain, function, model):
+
+
+def plot_data(domain, function, model):
     line = np.linspace(1, len(domain), len(domain))
     plt.plot(domain, function)
     plt.plot(line, model(line), color="red")
     plt.show()
-
-
 
 
 if __name__ == "__main__":
