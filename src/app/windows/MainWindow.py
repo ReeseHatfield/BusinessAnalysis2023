@@ -1,6 +1,8 @@
 from tkinter import ttk
 import src.app.gui_constants as GUI
 
+from src.app.windows.PredictionWindow import PredictionPanel
+
 
 class MainWindow:
     def __init__(self, master):
@@ -19,7 +21,7 @@ class MainWindow:
     def create_tabs(self):
         self.tab_control = ttk.Notebook(self.master, style=GUI.STYLE)
 
-        self.create_tab("Tab One")
+        self.create_tab("Forecasting")
         self.create_tab("Tab Two")
         self.create_tab("Tab Three")
         self.create_tab("Tab Four")
@@ -39,3 +41,9 @@ class MainWindow:
 
         label = ttk.Label(frame, text=tab_name, font=GUI.TAB_LABEL_STYLE)
         label.grid(row=0, column=0, sticky='nesw', padx=16, pady=16)
+
+        # Add custom widget to the first tab
+        if tab_name == "Forecasting":
+            prediction_widget = PredictionPanel(frame)
+            prediction_widget.grid(row=1, column=0, sticky='nesw', padx=16, pady=16)
+

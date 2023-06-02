@@ -5,7 +5,7 @@ import numpy as np
 import tkinter as tk
 from tkinter import ttk
 from datetime import datetime
-from src.constants import weather_effect
+from src.constants import _weather_effect
 from src.app.windows.MainWindow import MainWindow
 
 
@@ -30,8 +30,8 @@ def main():
     print(f"Historical:  {historical_sales_avg[date_to_get]:.2f}")
     print(f"Predicted:  {projected_avg_sales(date_to_get):.2f}")
     print()
-    print(f"Historical with Weather:  {(historical_sales_avg[date_to_get] * weather_effect):.2f}")
-    print(f"Predicted with Weather:  {(projected_avg_sales(date_to_get) * weather_effect ):.2f}")
+    print(f"Historical with Weather:  {(historical_sales_avg[date_to_get] * _weather_effect):.2f}")
+    print(f"Predicted with Weather:  {(projected_avg_sales(date_to_get) * _weather_effect ):.2f}")
 
     domain = range(len(historical_sales_avg))
     plot_data(domain, historical_sales_avg, projected_avg_sales)
