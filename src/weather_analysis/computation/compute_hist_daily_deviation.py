@@ -5,7 +5,8 @@ from src.parsing.DataReader import DataReader
 
 PRECIPITATION_THRESHOLD = 0.0
 
-def main():
+
+def compute_hist_daily_deviation():
     avg_sales_per_day_in_year = os.path.join('dataset', 'serialized', 'sales_data.pkl')
     sales_data = None
 
@@ -35,9 +36,6 @@ def main():
     for i in range(len(sales_data)):
         print(f"Normal Sales on day {i}: {sales_data[i]}")
 
-
-
-
     # day_of_year = datetime.now().timetuple().tm_yday
 
 
@@ -59,4 +57,4 @@ def load_weather_dict_from_pickle(weather_pickle_path: str):
 
 
 if __name__ == "__main__":
-    main()
+    compute_hist_daily_deviation()

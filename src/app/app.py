@@ -19,31 +19,8 @@ def main():
     app = MainWindow(root)
     root.mainloop()
 
-    sales_data_path = os.path.join('dataset', 'serialized', 'sales_data.pkl')
-    cont_model = os.path.join('dataset', 'serialized', 'model.pkl')
-    historical_sales_avg, projected_avg_sales = read_data(sales_data_path, cont_model)
-
-    date_to_get = date_to_day((input("Date: ")))
-
-    print(f"Historical:  {historical_sales_avg[date_to_get]:.2f}")
-    print(f"Predicted:  {projected_avg_sales(date_to_get):.2f}")
-    print()
-    print(f"Historical with Weather:  {(historical_sales_avg[date_to_get] * _weather_effect):.2f}")
-    print(f"Predicted with Weather:  {(projected_avg_sales(date_to_get) * _weather_effect):.2f}")
-
-    domain = range(len(historical_sales_avg))
-    plot_data(domain, historical_sales_avg, projected_avg_sales)
-
-
-def date_to_day(date_input: str):
-    year = 2022
-    date = datetime.strptime(date_input, f'%m-%d-%Y').date()
-    day_of_year = date.timetuple().tm_yday
-    return day_of_year
-
 
 def read_data(data_file, model_file):
-
     with open(data_file, 'rb') as f:
         sales = pickle.load(f)
     with open(model_file, 'rb') as f:

@@ -11,7 +11,7 @@ LATITUDE = 39.344538
 LONGITUDE = -82.988237
 
 
-def main():
+def gather_historical_data():
 
     print(os.getcwd())
 
@@ -63,4 +63,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    gather_historical_data()

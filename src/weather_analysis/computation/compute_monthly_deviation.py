@@ -6,7 +6,7 @@ import datetime
 PRECIPITATION_THRESHOLD = 1.25  # inches of precipitation
 
 
-def main():
+def compute_monthly_deviation():
     # Load weather data
     weather_pickle_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
     weather_data = load_weather_data_from_pickle(weather_pickle_path)
@@ -128,4 +128,4 @@ def load_weather_data_from_pickle(weather_pickle_path: str):
 
 
 if __name__ == "__main__":
-    main()
+    compute_monthly_deviation()
