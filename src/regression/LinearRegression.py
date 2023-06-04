@@ -1,4 +1,6 @@
 import numpy as np
+
+
 class LinearRegression:
     def __init__(self):
         self.coefficients = None
@@ -10,5 +12,6 @@ class LinearRegression:
     def predict(self, X):
         X = np.insert(X, 0, 1, axis=1)  # add a column of 1s for the intercept
         return X @ self.coefficients
+
     def get_coeffs(self):
-        return self.coefficients    
+        return self.coefficients

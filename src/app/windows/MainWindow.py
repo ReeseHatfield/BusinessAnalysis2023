@@ -46,4 +46,3 @@ class MainWindow:
         if tab_name == "Forecasting":
             prediction_widget = PredictionPanel(frame)
             prediction_widget.grid(row=1, column=0, sticky='nesw', padx=16, pady=16)
-

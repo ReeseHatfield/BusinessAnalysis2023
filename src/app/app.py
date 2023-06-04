@@ -43,8 +43,6 @@ def date_to_day(date_input: str):
 
 
 def read_data(data_file, model_file):
-    sales = []
-    model = []
 
     with open(data_file, 'rb') as f:
         sales = pickle.load(f)

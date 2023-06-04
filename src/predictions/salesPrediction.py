@@ -11,7 +11,7 @@ def main():
     sales, model = load_or_compute_data()
 
     # Plot the data
-    plotData(range(len(sales)), sales, model)
+    plot_data(range(len(sales)), sales, model)
 
 
 def load_or_compute_data():
@@ -43,7 +43,7 @@ def load_or_compute_data():
     return sales, model
 
 
-def plotData(domain, function, model):
+def plot_data(domain, function, model):
     line = np.linspace(1, len(domain), len(domain))
     plt.plot(domain, function)
     plt.plot(line, model(line), color="red")
