@@ -2,12 +2,10 @@ import os
 import tkinter as tk
 from tkinter import ttk
 import src.app.gui_constants as GUI
-from src.app.windows.ForecastingWindow.PredictionStyle import configure_style
+from src.app.style.PredictionStyle import configure_style
 from src.predictions.DataForecaster import DataForecaster
-from src.predictions.salesPrediction import plot_data
 from src.utils.weather_utils import month_to_int, date_to_day
-from src.utils.file_utils import check_files
-from src.app.windows.ForecastResults.ForecastResult import ForecastResult
+from src.app.windows.forecasting.ForecastResult import ForecastResult
 
 
 class PredictionPanel(ttk.Frame):
@@ -15,7 +13,8 @@ class PredictionPanel(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        check_files()
+        # check_files()
+        # leave this in for main branch
 
         # Initialize instance attributes
         self.selected_month = None
