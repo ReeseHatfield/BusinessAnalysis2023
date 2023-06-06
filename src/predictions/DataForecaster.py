@@ -1,5 +1,6 @@
 import pickle
 from datetime import datetime
+from src.constants import precip_dict
 
 
 class DataForecaster:
@@ -21,6 +22,14 @@ class DataForecaster:
 
         hist_forecast = self._historical_model[date_to_get]
         predicted_forecast = self._cont_model(date_to_get)
+
+        print("here ", precip_dict[precip])
+
+
+
+        hist_forecast -= hist_forecast * precip_dict[precip]
+        predicted_forecast -= predicted_forecast * precip_dict[precip]
+
 
         return hist_forecast, predicted_forecast
 

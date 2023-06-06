@@ -1,6 +1,7 @@
 from tkinter import ttk
 import sys
 
+
 def configure_style():
     style = ttk.Style()
     style.configure('TFrame', background='#333333')
@@ -18,7 +19,5 @@ def configure_style():
     else:
         # macOS/Linux-specific styles
         style.configure('TEntry', fieldbackground='#555555', foreground='#FFFFFF')
-
-    return style
 
     return style

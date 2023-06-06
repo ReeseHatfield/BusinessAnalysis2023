@@ -7,6 +7,7 @@ from src.predictions.DataForecaster import DataForecaster
 from src.predictions.salesPrediction import plot_data
 from src.utils.weather_utils import month_to_int, date_to_day
 from src.utils.file_utils import check_files
+from src.app.windows.ForecastResults.ForecastResult import ForecastResult
 
 
 class PredictionPanel(ttk.Frame):
@@ -33,24 +34,36 @@ class PredictionPanel(ttk.Frame):
         """Create and pack all widgets in the frame."""
 
         # Frame to hold all widgets
-        widget_frame = ttk.Frame(self)
-        widget_frame.pack(expand=True)
+        root = ttk.Frame(self)
+        root.pack(expand=True)
 
-        # Month option menu
-        self.selected_month = tk.StringVar()
-        self.month_menu = self.create_option_menu(widget_frame, self.selected_month, GUI.MONTHS)
+        self.init_month_menu(root)
 
-        # Weather option menu
-        self.selected_weather = tk.StringVar()
-        self.weather_menu = self.create_option_menu(widget_frame, self.selected_weather, GUI.WEATHER_LEVELS)
+        self.init_weather_menu(root)
 
+        self.init_day_input(root)
+
+        self.init_forecast_button(root)
+
+    def init_forecast_button(self, widget_frame):
+        # Forecast button
+        self.button = ttk.Button(widget_frame, text="Forecast!", command=self.forecast_from_selected)
+        self.button.pack(pady=10)
+
+    def init_day_input(self, widget_frame):
         # Day input
         self.selected_day = tk.StringVar()
         self.create_label_entry(widget_frame, "Day: ", self.selected_day)
 
-        # Forecast button
-        self.button = ttk.Button(widget_frame, text="Forecast!", command=self.forecast_from_selected)
-        self.button.pack(pady=10)
+    def init_weather_menu(self, widget_frame):
+        # Weather option menu
+        self.selected_weather = tk.StringVar()
+        self.weather_menu = self.create_option_menu(widget_frame, self.selected_weather, GUI.WEATHER_LEVELS)
+
+    def init_month_menu(self, widget_frame):
+        # Month option menu
+        self.selected_month = tk.StringVar()
+        self.month_menu = self.create_option_menu(widget_frame, self.selected_month, GUI.MONTHS)
 
     @staticmethod
     def create_option_menu(parent, variable, options):
@@ -86,13 +99,20 @@ class PredictionPanel(ttk.Frame):
 
         print(result)
 
-        result_window = tk.Toplevel(self)
+        # result_window = ForecastResult(self, data_tuple=result)
 
-        plot_data(
-            range(len(forecaster.get_historical_model())),
-            forecaster.get_historical_model(),
-            forecaster.get_cont_model(),
-            date_to_day(f'{month_to_int(self.selected_month.get())}-{self.selected_day.get()}-2022')
-        )
+        domain = range(len(forecaster.get_historical_model()))
+        function = forecaster.get_historical_model()
+        model = forecaster.get_cont_model()
+        eval_pos = date_to_day(f'{month_to_int(self.selected_month.get())}-{self.selected_day.get()}-2022')
+
+        plot_window = ForecastResult(parent=self,
+                                     data_tuple=result,
+                                     domain=domain,
+                                     function=function,
+                                     model=model,
+                                     eval_pos=eval_pos
+                                     )
+
 
 

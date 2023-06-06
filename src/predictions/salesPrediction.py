@@ -44,15 +44,15 @@ def load_or_compute_data():
     return sales, model
 
 
-def plot_data(domain, function, model, eval_pos=None):
+def plot_data(ax, domain, function, model, eval_pos=None):
     line = np.linspace(1, len(domain), len(domain))
-    plt.plot(domain, function)
-    plt.plot(line, model(line), color="red")
+    ax.plot(domain, function)
+    ax.plot(line, model(line), color="red")
 
     if eval_pos is not None:
-        plt.axvline(x=eval_pos, color='black', label='Predicted Line', linewidth=4)
+        ax.axvline(x=eval_pos, color='black', label='Predicted Line', linewidth=4)
 
-    plt.show()
+    return ax
 
 
 if __name__ == '__main__':

@@ -5,6 +5,12 @@ TAB_LABEL_STYLE = (
     'arial 15 underline', 50, 'bold',
 )
 
+FORECAST_RESULT_FONT = (
+    'arial', 20, 'bold'
+)
+
+FORECAST_ERROR_TERM = 0.10
+
 MONTHS = [
     'Jan',
     'Feb',
@@ -27,5 +33,6 @@ WEATHER_LEVELS = [
     'Heavy',
 ]
 
+DPI = 100
 
 
