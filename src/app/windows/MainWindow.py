@@ -2,6 +2,7 @@ from tkinter import ttk
 import src.app.gui_constants as GUI
 
 from src.app.windows.forecasting.PredictionWindow import PredictionPanel
+from src.app.windows.stats.StatsWindow import StatsWindow
 
 
 class MainWindow:
@@ -24,7 +25,7 @@ class MainWindow:
         self.create_tab("Forecasting")
         self.create_tab("Tab Two")
         self.create_tab("Tab Three")
-        self.create_tab("Tab Four")
+        self.create_tab("Stats")
 
         self.tab_control.grid(row=0, column=0, sticky='nesw', padx=4, pady=4)
 
@@ -46,3 +47,11 @@ class MainWindow:
         if tab_name == "Forecasting":
             prediction_widget = PredictionPanel(frame)
             prediction_widget.grid(row=1, column=0, sticky='nesw', padx=16, pady=16)
+        elif tab_name == "Stats":
+            stats_frame = StatsWindow(frame)
+            stats_frame.grid(row=1, column=0, sticky='nesw', padx=16, pady=16)
+
+
+
+
+

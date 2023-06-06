@@ -98,20 +98,16 @@ class PredictionPanel(ttk.Frame):
 
         print(result)
 
-        # result_window = ForecastResult(self, data_tuple=result)
-
         domain = range(len(forecaster.get_historical_model()))
         function = forecaster.get_historical_model()
         model = forecaster.get_cont_model()
         eval_pos = date_to_day(f'{month_to_int(self.selected_month.get())}-{self.selected_day.get()}-2022')
 
-        plot_window = ForecastResult(parent=self,
-                                     data_tuple=result,
-                                     domain=domain,
-                                     function=function,
-                                     model=model,
-                                     eval_pos=eval_pos
-                                     )
-
-
-
+        plot_window = ForecastResult(
+            parent=self,
+            data_tuple=result,
+            domain=domain,
+            function=function,
+            model=model,
+            eval_pos=eval_pos
+        )
