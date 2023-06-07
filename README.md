@@ -6,6 +6,8 @@ DataDynamics is a data analysis software designed to provide comprehensive insig
 
 The main goal of DataDynamics is to empower businesses with the ability to make data-driven decisions. It interfaces with the CLOVER POS system to access and analyze historical data, providing valuable insights into various aspects of business operations.
 
+![DataDynamics Screenshot](resources/dataDynamics.PNG)
+
 ## Features
 
 DataDynamics includes the following key features:

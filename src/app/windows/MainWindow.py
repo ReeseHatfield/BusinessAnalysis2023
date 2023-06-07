@@ -23,8 +23,8 @@ class MainWindow:
         self.tab_control = ttk.Notebook(self.master, style=GUI.STYLE)
 
         self.create_tab("Forecasting")
-        self.create_tab("Tab Two")
-        self.create_tab("Tab Three")
+        self.create_tab("Employees")
+        self.create_tab("Costs")
         self.create_tab("Stats")
 
         self.tab_control.grid(row=0, column=0, sticky='nesw', padx=4, pady=4)
