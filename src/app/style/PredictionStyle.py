@@ -9,7 +9,7 @@ def configure_style():
     style.configure('TButton', font=('Helvetica', 12), foreground='#000000', background='#555555')
     style.map('TButton', foreground=[('active', '#000000')], background=[('active', '#000000')])
     style.configure('TCombobox', background='#555555', fieldbackground='#555555', foreground='#FFFFFF'
-                    , selectbackground='#000000')
+                    ,selectbackground='#000000')
 
     # 'Entry' might not work on OSX
     # change to 'TEntry'

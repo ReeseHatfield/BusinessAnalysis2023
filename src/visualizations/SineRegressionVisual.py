@@ -5,7 +5,7 @@ import pylab as plt
 import os
 
 
-def main():
+def compute_sine_visual():
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
     sales = reader.get_sales_per_day()
 
@@ -27,4 +27,4 @@ def plot_data(domain, function, result):
 
 
 if __name__ == "__main__":
-    main()
+    compute_sine_visual()
