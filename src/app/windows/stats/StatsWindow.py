@@ -12,7 +12,7 @@ class StatsWindow(ttk.Frame):
         self.sine_visual_btn = ttk.Button(self, text="View Sine Visual (this may take a second)",
                                           command=self.display_sine_stats)
         # Set the layout for the button
-        self.sine_visual_btn.pack() 
+        self.sine_visual_btn.pack()
 
     def display_sine_stats(self):
         compute_sine_visual()
