@@ -4,6 +4,8 @@ quarterlyData/
 constants.py
 response.json
 
+# deployment
+osx_deploy.app/*
 
 
 # Pycharm
