@@ -2,7 +2,7 @@ import os
 import tkinter as tk
 from tkinter import ttk
 import src.app.gui_constants as GUI
-from src.app.style.PredictionStyle import configure_style
+from src.app.style.styles import configure_style
 from src.predictions.DataForecaster import DataForecaster
 from src.utils.weather_utils import month_to_int, date_to_day
 from src.app.windows.forecasting.ForecastResult import ForecastResult
@@ -17,6 +17,9 @@ class PredictionPanel(ttk.Frame):
         # leave this in for main branch
 
         # Initialize instance attributes
+        self.weather_label = None
+        self.day_label = None
+        self.month_label = None
         self.selected_month = None
         self.month_menu = None
         self.selected_weather = None
@@ -36,9 +39,15 @@ class PredictionPanel(ttk.Frame):
         root = ttk.Frame(self)
         root.pack(expand=True)
 
+        self.month_label = self.create_label(root, "Month: ", GUI.PRED_LABEL)
+
         self.init_month_menu(root)
 
+        self.weather_label = self.create_label(root, "Weather: ", GUI.PRED_LABEL)
+
         self.init_weather_menu(root)
+
+        self.day_label = self.create_label(root, "Day: ", GUI.PRED_LABEL)
 
         self.init_day_input(root)
 
@@ -49,10 +58,18 @@ class PredictionPanel(ttk.Frame):
         self.button = ttk.Button(widget_frame, text="Forecast!", command=self.forecast_from_selected)
         self.button.pack(pady=10)
 
+    @staticmethod
+    def create_label(widget_frame, text, font):
+        label = tk.Label(widget_frame, text=text, font=font)
+        label.configure(background="#333333", foreground="#FFFFFF")
+        label.pack()
+        return label
+
     def init_day_input(self, widget_frame):
         # Day input
         self.selected_day = tk.StringVar()
-        self.create_label_entry(widget_frame, "Day: ", self.selected_day)
+        self.create_label_entry(widget_frame, "", self.selected_day)
+
 
     def init_weather_menu(self, widget_frame):
         # Weather option menu
