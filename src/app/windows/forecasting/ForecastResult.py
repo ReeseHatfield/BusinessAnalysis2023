@@ -39,8 +39,6 @@ class ForecastResult(tk.Toplevel):
         max_to_display = f"{(self._max + (self._max * GUI.FORECAST_ERROR_TERM)):.2f}"
         mean_to_display = f"{self._mean:.2f}"
 
-    
-
         self.label = tk.Label(master=self, text=f'Expect sales between {min_to_display} and {max_to_display}, '
                                                 f'with a mean of {mean_to_display}', font=GUI.FORECAST_RESULT_FONT)
         self.label.pack()
