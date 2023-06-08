@@ -1,11 +1,15 @@
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
+WINDOW_HEIGHT = 700
+WINDOW_WIDTH = 700
 STYLE = 'Custom.TNotebook'
 TAB_LABEL_STYLE = (
     'arial 15 underline', 50, 'bold',
 )
 
 FORECAST_RESULT_FONT = (
+    'arial', 20, 'bold'
+)
+
+PRED_LABEL = (
     'arial', 20, 'bold'
 )
 
