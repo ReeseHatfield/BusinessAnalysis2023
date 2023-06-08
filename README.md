@@ -30,11 +30,7 @@ DataDynamics interfaces with the CLOVER POS historical data system make data-dri
 
 ## Installation & Usage
 
-The repository contains all the necessary files and instructions to install and use DataDynamics. Please refer to the installation guide for detailed instructions.
-
-## Structure of the Repository
-
-This repository is organized into several folders, each containing relevant files for different aspects of the software. The 'src' folder contains the source code, while the 'data' folder holds the data used for analysis. The 'docs' folder provides additional documentation on how to use the software.
+The repository contains all the necessary files and instructions to install and use DataDynamics. Please refer to the installation guide [IN PROGRESS] for detailed instructions.
 
 ## Contributing
 
