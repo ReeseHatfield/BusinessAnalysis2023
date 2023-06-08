@@ -1,6 +1,9 @@
 from src.parsing.DataReader import DataReader
 from src.regression.LinearRegression import LinearRegression
 
+import matplotlib
+
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 import os
 import numpy as np

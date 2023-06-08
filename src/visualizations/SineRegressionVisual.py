@@ -1,18 +1,18 @@
+import os
+import matplotlib
+matplotlib.use("TkAgg")
+import matplotlib.pyplot as plt
+
 from src.parsing.DataReader import DataReader
 from src.regression.SinusoidalRegression import SinusoidalRegression
-
-import pylab as plt
-import os
 
 
 def compute_sine_visual():
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
     sales = reader.get_sales_per_day()
 
-    # tt = numpy.linspace(0, n, n)
     domain = range(len(sales))
     function = sales
-    # result = fit_sin(domain, function)
     regression = SinusoidalRegression(domain, function)
     result = regression.fit_sin()
 
