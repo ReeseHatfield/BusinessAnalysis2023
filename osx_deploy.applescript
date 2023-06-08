@@ -1,1 +1,1 @@
-do shell script "unix_deploy.sh > /dev/null 2>&1 &"
+do shell script "./unix_deploy.sh"
