@@ -1,1 +1,0 @@
-do shell script "./unix_deploy.sh"
