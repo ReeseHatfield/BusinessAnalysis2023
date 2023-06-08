@@ -28,7 +28,7 @@ def compute_linear_visual():
     plt.scatter(x, y, color='blue')
     plt.xlim(0, 700)
     plt.ylim(0, 250)
-    plt.show()
+    plt.show(block=False)
 
 
 if __name__ == "__main__":
