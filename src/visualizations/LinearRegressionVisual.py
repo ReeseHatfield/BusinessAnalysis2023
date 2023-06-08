@@ -6,7 +6,7 @@ import os
 import numpy as np
 
 
-def main():
+def compute_linear_visual():
     reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
     sales = reader.get_sales_per_day()
 
@@ -29,4 +29,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    compute_linear_visual()
