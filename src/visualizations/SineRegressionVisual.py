@@ -23,7 +23,7 @@ def plot_data(domain, function, result):
     plt.plot(domain, function, "-k", label="y", linewidth=2)
     plt.plot(domain, result["fitfunc"](domain), "r-", label="y fit curve", linewidth=2)
     plt.legend(loc="best")
-    plt.show()
+    plt.show(block=False)
 
 
 if __name__ == "__main__":
