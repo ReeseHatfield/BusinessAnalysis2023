@@ -24,29 +24,40 @@ class CustomerFrame(ttk.Frame):
             # If pickle file exists, load the data from it
             with open(pickle_file, "rb") as f:
                 cust_to_sales_dict = pickle.load(f)
-        else:
-            # if pickle file doesn't exist, compute the data and save it to the pickle file
-            data_path = os.path.join('dataset', 'dataSet.csv')
-            reader = DataReader(data_path)
-            cust_list = reader.get_field(CLOVER_CSV_CUSTOMER_NAME)
+            # early return if data has already been computed
+            return cust_to_sales_dict
 
-            cust_to_sales_dict = {}
+        # if pickle file doesn't exist, compute the data and save it to the pickle file
+        data_path = os.path.join('dataset', 'dataSet.csv')
+        reader = DataReader(data_path)
+        cust_list = reader.get_field(CLOVER_CSV_CUSTOMER_NAME)
 
-            for name in cust_list:
-                if name == '' or name == 'MANUALLY ENTERED' or name == 'A GIFT FOR YOU':
-                    continue
+        cust_to_sales_dict = {}
 
-                try:
-                    cust_to_sales_dict[name] += 1
-                except KeyError:
-                    cust_to_sales_dict[name] = 1  # start from 1 instead of 0
+        # list of exclusions for CLOVER input
+        # '' ->  no customer information give
+        # 'MANUALLY ENTERED' -> employee entered customer info manually
+        # 'A GIFT FOR YOU' -> gift card used for purchase
 
-            # sort the dictionary by values
-            cust_to_sales_dict = dict(sorted(cust_to_sales_dict.items(), key=lambda item: item[1], reverse=True))
+        exclusions = ['', 'MANUALLY ENTERED', 'A GIFT FOR YOU']
 
-            # save to pickle
-            with open(pickle_file, "wb") as f:
-                pickle.dump(cust_to_sales_dict, f)
+        for name in cust_list:
+            if name in exclusions:
+                continue
+
+            try:
+                cust_to_sales_dict[name] += 1
+                # if name exists in dict, increment
+            except KeyError:
+                cust_to_sales_dict[name] = 1
+                # set new value to 1
+
+        # sort the dictionary by values
+        cust_to_sales_dict = dict(sorted(cust_to_sales_dict.items(), key=lambda item: item[1], reverse=True))
+
+        # save to pickle
+        with open(pickle_file, "wb") as f:
+            pickle.dump(cust_to_sales_dict, f)
 
         return cust_to_sales_dict
 
@@ -65,7 +76,7 @@ class CustomerFrame(ttk.Frame):
         bars = ax.barh(top_cust_names, top_cust_sales, color='blue')
         ax.set_xlabel('Number of Sales')
         ax.set_ylabel('Customer Names')
-        ax.set_title('Top {} Customers by Sales'.format(number_of_customers_to_display))
+        ax.set_title(f'Top {number_of_customers_to_display} Customers by Sales')
 
         # rotate labels for readability
         for label in ax.get_xticklabels():
