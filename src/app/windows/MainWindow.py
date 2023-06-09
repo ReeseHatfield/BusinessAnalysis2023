@@ -3,6 +3,7 @@ import src.app.gui_constants as GUI
 
 from src.app.windows.forecasting.PredictionWindow import PredictionPanel
 from src.app.windows.stats.StatsWindow import StatsWindow
+from src.app.windows.customers.CustomerFrame import CustomerFrame
 
 
 class MainWindow:
@@ -26,6 +27,7 @@ class MainWindow:
         self.create_tab("Employees")
         self.create_tab("Costs")
         self.create_tab("Stats")
+        self.create_tab("Customers")
 
         self.tab_control.grid(row=0, column=0, sticky='nesw', padx=4, pady=4)
 
@@ -50,6 +52,13 @@ class MainWindow:
         elif tab_name == "Stats":
             stats_frame = StatsWindow(frame)
             stats_frame.grid(row=1, column=0, sticky='nesw', padx=16, pady=16)
+        elif tab_name == "Costs":
+            pass
+        elif tab_name == "Employee":
+            pass
+        elif tab_name == "Customers":
+            customers_frame = CustomerFrame(frame)
+            customers_frame.grid(row=1, column=0, sticky='nesw', padx=16, pady=16)
 
 
 
