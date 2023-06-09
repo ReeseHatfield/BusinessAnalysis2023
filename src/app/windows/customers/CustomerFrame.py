@@ -66,7 +66,10 @@ class CustomerFrame(ttk.Frame):
 
         # create plot
         fig = Figure(figsize=(5.4, 5.4), dpi=100, tight_layout=True)
-        ax = fig.add_subplot(111)
+
+        single_row_single_col_index_one = 111
+
+        ax = fig.add_subplot(single_row_single_col_index_one)
 
         # extract the data for customers
         top_cust_names = list(self.data.keys())[:number_of_customers_to_display]
@@ -79,8 +82,9 @@ class CustomerFrame(ttk.Frame):
         ax.set_title(f'Top {number_of_customers_to_display} Customers by Sales')
 
         # rotate labels for readability
+        label_rotation = 45
         for label in ax.get_xticklabels():
-            label.set_rotation(45)
+            label.set_rotation(label_rotation)
 
         canvas = FigureCanvasTkAgg(fig, master=self)
         canvas.draw()
