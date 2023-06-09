@@ -39,6 +39,6 @@ class StatsWindow(ttk.Frame):
                                             style="StatsWindow.TButton")
         self.linear_visual_btn.grid(column=1, row=2, sticky=tk.E)
 
-        # Padding
+        # add padding to children
         for child in self.winfo_children():
             child.grid_configure(padx=10, pady=10)
