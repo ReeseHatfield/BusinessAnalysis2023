@@ -1,10 +1,9 @@
 import pickle
-import os
 import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tk
 from tkinter import ttk
-from src.app.windows.MainWindow import MainWindow
+from src.app.windows.root.MainWindow import MainWindow
 
 
 def main():
