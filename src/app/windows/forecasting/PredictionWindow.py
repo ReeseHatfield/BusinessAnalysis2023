@@ -1,7 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import ttk
-import src.app.gui_constants as GUI
+import src.constants.gui_constants as GUI
 from src.app.style.styles import configure_style
 from src.predictions.DataForecaster import DataForecaster
 from src.utils.weather_utils import month_to_int, date_to_day

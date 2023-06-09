@@ -1,6 +1,6 @@
 import pickle
 from datetime import datetime
-from src.constants import precip_dict
+from src.constants.constants import precip_dict
 
 
 class DataForecaster:

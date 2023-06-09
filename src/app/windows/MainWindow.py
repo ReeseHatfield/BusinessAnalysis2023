@@ -1,5 +1,5 @@
 from tkinter import ttk
-import src.app.gui_constants as GUI
+import src.constants.gui_constants as GUI
 
 from src.app.windows.forecasting.PredictionWindow import PredictionPanel
 from src.app.windows.stats.StatsWindow import StatsWindow

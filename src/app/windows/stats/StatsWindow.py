@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-import src.app.gui_constants as GUI
 from src.visualizations.SineRegressionVisual import compute_sine_visual
 from src.visualizations.LinearRegressionVisual import compute_linear_visual
 

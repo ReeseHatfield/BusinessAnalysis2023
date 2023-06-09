@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tk
 from tkinter import ttk
-from datetime import datetime
-from src.constants import _weather_effect
 from src.app.windows.MainWindow import MainWindow
 
 

@@ -4,7 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from scipy.stats import norm
 import numpy as np
 from src.predictions.salesPrediction import plot_data
-import src.app.gui_constants as GUI
+import src.constants.gui_constants as GUI
 
 
 class ForecastResult(tk.Toplevel):
