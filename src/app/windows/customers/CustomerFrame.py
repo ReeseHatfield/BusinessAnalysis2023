@@ -33,7 +33,7 @@ class CustomerFrame(ttk.Frame):
             cust_to_sales_dict = {}
 
             for name in cust_list:
-                if name == '' or name == 'MANUALLY ENTERED':
+                if name == '' or name == 'MANUALLY ENTERED' or name == 'A GIFT FOR YOU':
                     continue
 
                 try:
