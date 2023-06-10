@@ -20,10 +20,6 @@ class CustomerFrame(ttk.Frame):
     def load_or_compute_cust_data():
         pickle_file = os.path.join('dataset', 'cust_to_sales_dict.pkl')
 
-        data_path = os.path.join('dataset', 'dataSet.csv')
-        reader = DataReader(data_path)
-        print(reader.get_field(12))
-
         if os.path.exists(pickle_file):
             # If pickle file exists, load the data from it
             with open(pickle_file, "rb") as f:
