@@ -1,7 +1,7 @@
 # Sensitive information
 dataset/
 quarterlyData/
-constants.py
+business_specific_constants.py
 response.json
 
 # deployment
