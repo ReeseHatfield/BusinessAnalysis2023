@@ -6,18 +6,18 @@ from src.weather_analysis.historical.gather_historical_data import gather_histor
 
 
 def check_files():
-    crit_data_path = os.path.join('dataset', 'dataSet.csv')
+    crit_data_path = os.path.join('data', 'dataSet.csv')
 
     if not os.path.exists(crit_data_path):
-        print("Error: critical dataset missing")
+        print("Error: critical data missing")
         print("Exiting...")
         exit(1)
 
     paths = [
-        os.path.join('dataset', 'serialized', 'avg_sales_per_month.pkl'),
-        os.path.join('dataset', 'serialized', 'model.pkl'),
-        os.path.join('dataset', 'serialized', 'sales_data.pkl'),
-        os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl'),
+        os.path.join('data', 'serialized', 'avg_sales_per_month.pkl'),
+        os.path.join('data', 'serialized', 'model.pkl'),
+        os.path.join('data', 'serialized', 'sales_data.pkl'),
+        os.path.join('data', 'serialized', 'weather_data_by_day.pkl'),
     ]
 
     all_exist = all(os.path.exists(path) for path in paths)

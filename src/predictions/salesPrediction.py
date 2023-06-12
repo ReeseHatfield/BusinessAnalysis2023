@@ -16,8 +16,8 @@ def main():
 
 
 def load_or_compute_data():
-    data_file = os.path.join("dataset", 'serialized', "sales_data.pkl")
-    model_file = os.path.join("dataset", 'serialized', "model.pkl")
+    data_file = os.path.join("data", 'serialized', "sales_data.pkl")
+    model_file = os.path.join("data", 'serialized', "model.pkl")
 
     if os.path.exists(data_file) and os.path.exists(model_file):
         print("Using pre-computed data")
@@ -29,7 +29,7 @@ def load_or_compute_data():
     else:
         print("Computing data")
         # Compute data
-        reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+        reader = DataReader(os.path.join('data', 'dataSet.csv'))
         sales = reader.get_avg_sales_per_day_in_year()
         degree: int = 40
         domain = range(len(sales))

@@ -8,14 +8,14 @@ PRECIPITATION_THRESHOLD = 1.25  # inches of precipitation
 
 def compute_monthly_deviation():
     # Load weather data
-    weather_pickle_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
+    weather_pickle_path = os.path.join('data', 'serialized', 'weather_data_by_day.pkl')
     weather_data = load_weather_data_from_pickle(weather_pickle_path)
     precipitation_effects = []
 
     # dict of {datetime.date() : (temp, precip) }
     # only includes date where business was open
     # Load sales data
-    reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+    reader = DataReader(os.path.join('data', 'dataSet.csv'))
 
     sales_per_month = get_sales_by_month(reader)
     sales_by_date = reader.get_sales_by_day()
@@ -79,7 +79,7 @@ def calculate_sales_on_precip_days(days_precipitated: list, sales_by_date: dict)
 def get_sales_by_month(reader: DataReader) -> list:
     sales_per_month = []
 
-    path = os.path.join("dataset", "serialized", "avg_sales_per_month.pkl")
+    path = os.path.join("data", "serialized", "avg_sales_per_month.pkl")
 
     if os.path.exists(path):
         with open(path, "rb") as f:

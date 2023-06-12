@@ -101,8 +101,8 @@ class PredictionPanel(ttk.Frame):
         """Forecast from the selected values and plot the results."""
         print(f"{self.selected_month.get()} {self.selected_day.get()}, {self.selected_weather.get()}")
 
-        hist_file_path = os.path.join('dataset', 'serialized', 'sales_data.pkl')
-        cont_file_path = os.path.join('dataset', 'serialized', 'model.pkl')
+        hist_file_path = os.path.join('data', 'serialized', 'sales_data.pkl')
+        cont_file_path = os.path.join('data', 'serialized', 'model.pkl')
 
         data_tup = (hist_file_path, cont_file_path)
         forecaster = DataForecaster(data_tup)

@@ -15,7 +15,7 @@ def gather_historical_data():
 
     print(os.getcwd())
 
-    pickle_file_path = os.path.join('dataset', 'dates.pkl')
+    pickle_file_path = os.path.join('data', 'dates.pkl')
 
     if os.path.exists(pickle_file_path):
         print("Using pre-computed data")
@@ -23,7 +23,7 @@ def gather_historical_data():
             dates = pickle.load(f)
     else:
         print("Computing data")
-        reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+        reader = DataReader(os.path.join('data', 'dataSet.csv'))
         dates = reader.get_dates()
         with open(pickle_file_path, 'wb') as f:
             pickle.dump(dates, f)
@@ -57,7 +57,7 @@ def gather_historical_data():
         print(precipitation_sum)
         weather_dict_by_day[current_date] = (mean_temperature, precipitation_sum)
 
-    weather_pickle_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
+    weather_pickle_path = os.path.join('data', 'serialized', 'weather_data_by_day.pkl')
     with open(weather_pickle_path, 'wb') as f:
         pickle.dump(weather_dict_by_day, f)
 

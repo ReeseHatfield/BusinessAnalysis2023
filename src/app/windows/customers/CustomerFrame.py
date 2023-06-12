@@ -18,7 +18,7 @@ class CustomerFrame(ttk.Frame):
 
     @staticmethod
     def load_or_compute_cust_data():
-        pickle_file = os.path.join('dataset', 'cust_to_sales_dict.pkl')
+        pickle_file = os.path.join('data', 'cust_to_sales_dict.pkl')
 
         if os.path.exists(pickle_file):
             # If pickle file exists, load the data from it
@@ -28,7 +28,7 @@ class CustomerFrame(ttk.Frame):
             return cust_to_sales_dict
 
         # if pickle file doesn't exist, compute the data and save it to the pickle file
-        data_path = os.path.join('dataset', 'dataSet.csv')
+        data_path = os.path.join('data', 'dataSet.csv')
         reader = DataReader(data_path)
 
         cust_list = reader.get_field(CLOVER_CSV_CUSTOMER_NAME)

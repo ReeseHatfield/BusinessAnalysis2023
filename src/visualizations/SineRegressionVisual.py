@@ -8,7 +8,7 @@ from src.regression.SinusoidalRegression import SinusoidalRegression
 
 
 def compute_sine_visual():
-    reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+    reader = DataReader(os.path.join('data', 'dataSet.csv'))
     sales = reader.get_sales_per_day()
 
     domain = range(len(sales))

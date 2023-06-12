@@ -1,5 +1,5 @@
 # Sensitive information
-dataset/
+data/
 quarterlyData/
 business_specific_constants.py
 response.json

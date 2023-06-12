@@ -7,16 +7,16 @@ PRECIPITATION_THRESHOLD = 0.0
 
 
 def compute_hist_daily_deviation():
-    avg_sales_per_day_in_year = os.path.join('dataset', 'serialized', 'sales_data.pkl')
+    avg_sales_per_day_in_year = os.path.join('data', 'serialized', 'sales_data.pkl')
     sales_data = None
 
-    reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+    reader = DataReader(os.path.join('data', 'dataSet.csv'))
 
     with open(avg_sales_per_day_in_year, 'rb') as f:
         sales_data = pickle.load(f)
 
-    # dataset/serialized/weather_data_by_day.pkl
-    date_sales_dict_path = os.path.join('dataset', 'serialized', 'weather_data_by_day.pkl')
+    # data/serialized/weather_data_by_day.pkl
+    date_sales_dict_path = os.path.join('data', 'serialized', 'weather_data_by_day.pkl')
 
     sales_by_date = reader.get_sales_by_day()
 

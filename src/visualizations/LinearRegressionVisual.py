@@ -10,7 +10,7 @@ import numpy as np
 
 
 def compute_linear_visual():
-    reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+    reader = DataReader(os.path.join('data', 'dataSet.csv'))
     sales = reader.get_sales_per_day()
 
     x = np.arange(len(sales)).reshape(-1, 1)

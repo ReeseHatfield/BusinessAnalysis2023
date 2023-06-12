@@ -14,7 +14,7 @@ from collections import OrderedDict
 def main():
     print("Starting ", os.path.basename(__file__), "...")
 
-    reader = DataReader(os.path.join('dataset', 'dataSet.csv'))
+    reader = DataReader(os.path.join('data', 'dataSet.csv'))
 
     sales_per_day = get_sales_per_day(reader)
 

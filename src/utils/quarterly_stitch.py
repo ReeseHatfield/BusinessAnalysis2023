@@ -2,7 +2,7 @@ import glob
 import os
 import pandas as pd
 
-csv_files = sorted(glob.glob('dataset\quarterlyData\*.csv'))
+csv_files = sorted(glob.glob('data\quarterlyData\*.csv'))
 csv_files.reverse()
 
 print(csv_files)

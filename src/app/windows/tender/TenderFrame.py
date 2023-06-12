@@ -20,7 +20,7 @@ class TenderFrame(ttk.Frame):
 
     @staticmethod
     def load_or_compute_tender_data():
-        pickle_file = os.path.join('dataset', 'tender_list.pkl')
+        pickle_file = os.path.join('data', 'tender_list.pkl')
 
         if os.path.exists(pickle_file):
             # If pickle file exists, load the data from it
@@ -29,7 +29,7 @@ class TenderFrame(ttk.Frame):
             # early return if data has already been computed
             return cust_to_sales_dict
 
-        data_path = os.path.join('dataset', 'dataSet.csv')
+        data_path = os.path.join('data', 'dataSet.csv')
         reader = DataReader(data_path)
 
         tender_list = reader.get_field(CLOVER_CSV_TENDER_TYPE)
