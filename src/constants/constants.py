@@ -5,6 +5,10 @@ summer_22_dates = [401, 448]
 
 _weather_effect = 0.081
 
+# computed from national average. In the US, precipitation effects business by -5.4%
+# moderate_precip_effect = (2/3) * x = 0.054
+# x = 0.081
+
 
 if os.path.exists(os.path.join('src', 'constants', 'business_specific_constants.py')):
     from src.constants.business_specific_constants import specific_business_weather_effect
